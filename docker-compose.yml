@@ -1,7 +1,5 @@
 services:
-  # ============================================================
   # 1. PostgreSQL с расширением pgvector для хранения эмбеддингов
-  # ============================================================
   postgres:
     image: ankane/pgvector:latest
     container_name: pulse-postgres
@@ -23,9 +21,7 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # ============================================================
   # 2. Redis — брокер очередей для Celery
-  # ============================================================
   redis:
     image: redis:7-alpine
     container_name: pulse-redis
@@ -40,9 +36,7 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # ============================================================
   # 3. Backend — FastAPI (веб-сервер)
-  # ============================================================
   backend:
     build:
       context: ./backend
@@ -67,9 +61,7 @@ services:
       - pulse-network
     restart: unless-stopped
 
-  # ============================================================
   # 4. Celery Worker — фоновый воркер для индексации
-  # ============================================================
   worker:
     build:
       context: ./backend
@@ -91,9 +83,7 @@ services:
       - pulse-network
     restart: unless-stopped
 
-  # ============================================================
   # 5. Frontend — React + Nginx
-  # ============================================================
   frontend:
     build:
       context: ./frontend
@@ -107,9 +97,7 @@ services:
       - pulse-network
     restart: unless-stopped
 
-# ============================================================
 # Volumes и Networks
-# ============================================================
 volumes:
   postgres_data:
 

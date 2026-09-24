@@ -31,16 +31,13 @@ dist/
 .env.production
 .env.local
 
-# PyCharm (у вас уже есть .idea/, но добавим на всякий случай)
+# PyCharm 
 *.iml
-
-# Alembic (миграции — их нельзя игнорировать, но если есть папка alembic/ — оставьте)
-# !alembic/       # если хотите сохранить миграции в Git
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Secrets (общее правило)
+# Secrets 
 secrets/
 *.secret
