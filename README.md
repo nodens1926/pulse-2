@@ -124,3 +124,23 @@ curl http://localhost:8000/api/status
 
 # Проверить, что поиск работает
 curl "http://localhost:8000/api/search?q=domain&limit=10"
+
+# Версии инструментов и окружения
+- Python: 3.10 (образ `python:3.10-slim`)
+- Node.js: 22 (образ `node:22-alpine`)
+- Docker: 24.x (или ваша версия, проверьте командой `docker --version`)
+- Docker Compose: v2.x (проверьте командой `docker compose version`)
+- PostgreSQL: latest (образ `ankane/pgvector:latest`)
+- Redis: 7-alpine
+
+# Протокол проверки запуска
+- **Дата проверки:** 27.11.2026
+- **Операционная система:** Windows 11, WSL2, Git Bash
+- **Кто проверял:** Антон
+- **Результат:** Проект запущен с нуля (после `docker compose down -v` и очистки кэша). 
+  Все 5 контейнеров (`backend`, `frontend`, `postgres`, `redis`, `worker`) в статусе `Up`. 
+  Проверка работоспособности: 
+  1. Открыта главная страница `http://localhost/`. 
+  2. Через админку добавлен сайт `https://www.docker.com/`. 
+  3. Выполнен `curl -X POST http://localhost:8000/api/reindex`. 
+  4. Поиск по запросу `docker` возвращает 10 результатов.
