@@ -37,6 +37,26 @@ Frontend
 HTTP-клиент	Axios	1.6.0
 Веб-сервер	Nginx	latest
 
+# Полная инструкция для запуска и проверки работоспособности
+1) Скачать репозиторий
+  git clone https://github.com/nodens1926/pulse-2
+2) Перейти в него и создать .htpasswd в папке frontend
+  cd pulse-2/frontend
+touch .htpasswd
+3) Заполнить .htpasswd (Хеш можно создать с помощью bcrypt, я использовал https://bcrypt-generator.com/)
+  admin:твой_хеш
+4) Перейти в корень проекта и запустить в докере
+  docker compose up -d --build
+5) Проверить статус
+  docker compose ps
+6) Проверить работоспособность, открыть:
+  http://localhost/ - главная страница сайта
+  http://localhost/admin - админка
+  http://localhost:8000/docs#/ - свагер
+7) Через админку добавить любой сайт на индексацию (напр. https://www.docker.com/)
+8) Запустить переиндексацию чтобы сразу увидеть результаты
+  curl -X POST http://localhost:8000/api/reindex
+
 # Структура докер-контейнеров, общая архитектура, наполнение БД
 Находятся в папке docs в корне
 
